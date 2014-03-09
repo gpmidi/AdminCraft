@@ -11,9 +11,8 @@ RUN apt-get dist-upgrade -y
 # Stuff pip will require
 RUN apt-get install -y \
   build-essential git python python-dev \
-  python-setuptools python-pip wget curl \
-  openjdk-7-jre-headless rdiff-backup \
-  python-openssl libssl-dev \
+  python-setuptools python-pip wget curl libssl-dev \
+  openjdk-7-jre-headless rdiff-backup python-openssl \
   supervisor logrotate cron man openssh-server vim
 
 RUN mkdir -p /var/log/supervisord && \
