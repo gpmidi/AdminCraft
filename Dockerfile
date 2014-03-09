@@ -12,9 +12,9 @@ RUN apt-get dist-upgrade -y
 RUN apt-get install -y \
   build-essential git python python-dev \
   python-setuptools python-pip wget curl \
-  openjdk-7-jre-headless curl rdiff-backup \
+  openjdk-7-jre-headless rdiff-backup \
   python-openssl libssl-dev \
-  supervisor logrotate cron
+  supervisor logrotate cron man openssh-server vim
 
 RUN mkdir -p /var/log/supervisord && \
   chmod 700 /var/log/supervisord/
@@ -23,7 +23,6 @@ RUN mkdir -p /var/log/supervisord && \
 ADD ./ /usr/share/minecraft/    
 RUN  cp /usr/share/minecraft/supervisord.d/*.conf /etc/supervisor/conf.d/ \
   && cp /usr/share/minecraft/logrotate.d/*.conf /etc/logrotate.d/ \
-  && apt-get -yq install openssh-server vim \
   && mkdir -p /var/run/sshd \
   && chmod 755 /var/run/sshd \
   && mkdir /root/.ssh \
