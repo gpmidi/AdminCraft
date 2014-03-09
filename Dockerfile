@@ -43,7 +43,7 @@ RUN cd /usr/share/minecraft/ \
 #  build-essential openssh-server vim
 
 # Run as this user
-USER mctest
+USER mcservers
 
 EXPOSE 22 25565
 VOLUME ["/var/lib/minecraft","/root/.ssh/"]
