@@ -22,11 +22,10 @@ MCPATH='/var/lib/minecraft/'
 BACKUPPATH='/var/lib/minecraftBackups/'
 CPU_COUNT=4 #incase CPU count is lower than 0 (odd, but might happen)
 CPU_COUNT=`grep -c ^processor /proc/cpuinfo`
-RAM_AVAILABLE="1024" #incase meminfo does not exist
-RAM_AVAILABLE=`cat /proc/meminfo | grep -E -o "[0-9]+" | head -n 1`
-RAM_AVAILABLE=$RAM_AVAILABLE/1024
+RAM_AVAILABLE_DEFAULT="1024" #incase meminfo does not exist
+RAM_AVAILABLE=$(( `cat /proc/meminfo | grep -E -o "[0-9]+" | head -n 1` / 1024 ))
 M="M"
-RAM_AVAILABLE=$RAM_AVAILABLE$M
+RAM_AVAILABLE=${RAM_AVAILABLE-$RAM_AVAILABLE_DEFAULT}$M
 INVOCATION="java -Xmx$RAM_AVAILABLE -Xms$RAM_AVAILABLE -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalPacing -XX:ParallelGCThreads=$CPU_COUNT -XX:+AggressiveOpts -jar $SERVICE $OPTIONS"
 
 ME=`whoami`
