@@ -20,8 +20,8 @@ RUN mkdir -p /var/log/supervisord && \
 
 # Various configs
 ADD ./ /usr/share/minecraft/    
-RUN  cp -a /usr/share/minecraft/supervisord.d/ /etc/supervisor/conf.d \
-  && cp -a /usr/share/minecraft/logrotate.d/ /etc/logrotate.d \
+RUN  cp -a /usr/share/minecraft/supervisord.d/*.conf /etc/supervisor/conf.d/ \
+  && cp -a /usr/share/minecraft/logrotate.d/*.conf /etc/logrotate.d/ \
   && mkdir -p /var/run/sshd \
   && chmod 755 /var/run/sshd \
   && mkdir /root/.ssh \
