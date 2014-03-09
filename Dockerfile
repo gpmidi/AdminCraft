@@ -50,6 +50,7 @@ ONBUILD RUN mkdir -p /usr/share/minecraft/servers \
     -O /usr/share/minecraft/servers/minecraft_server.1.7.4.jar \
     https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar \
   && echo "Updated server"
+  
 ONBUILD RUN ln -s /usr/share/minecraft/servers/minecraft_server.1.7.4.jar \
   /var/lib/minecraft/minecraft_server.jar
 
