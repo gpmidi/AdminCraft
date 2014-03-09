@@ -15,8 +15,8 @@ RUN apt-get install -y \
   openjdk-7-jre-headless rdiff-backup python-openssl \
   supervisor logrotate cron man openssh-server vim
 
-RUN mkdir -p /var/log/supervisord && \
-  chmod 700 /var/log/supervisord/
+RUN mkdir -p /var/log/supervisor && \
+  chmod 700 /var/log/supervisor/
 
 RUN apt-get install --yes screen 
 
@@ -47,5 +47,5 @@ USER mcservers
 
 EXPOSE 22 25565
 VOLUME ["/var/lib/minecraft","/root/.ssh/"]
-CMD ["supervisord", "--nodaemon", "--logfile=/var/log/supervisord/supervisord.log", "--loglevel=warn", "--logfile_maxbytes=1GB", "--logfile_backups=0"]
+CMD ["supervisord", "--nodaemon", "--logfile=/var/log/supervisor/supervisord.log", "--loglevel=warn", "--logfile_maxbytes=1GB", "--logfile_backups=0"]
 
