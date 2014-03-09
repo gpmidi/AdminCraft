@@ -20,6 +20,7 @@ RUN mkdir -p /var/log/supervisor && \
 
 RUN apt-get install --yes screen 
 
+# TODO: Move wget to ONBUILD
 # Various configs
 ADD ./ /usr/share/minecraft/    
 RUN  cp -a /usr/share/minecraft/supervisord.d/*.conf /etc/supervisor/conf.d/ \
