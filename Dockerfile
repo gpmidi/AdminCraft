@@ -36,7 +36,6 @@ RUN  cp -a /usr/share/minecraft/supervisord.d/*.conf /etc/supervisor/conf.d/ \
   && chown root:root /root/.ssh/authorized_keys /usr/share/minecraft /etc/init.d/minecraft \
   && chown -R 1000.1000 /var/lib/minecraft /var/lib/minecraftBackups \
   && chmod -R 755 /var/lib/minecraft /usr/share/minecraft /var/lib/minecraftBackups \
-  && wget -O /var/lib/minecraft/minecraft_server.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
 
 RUN cd /usr/share/minecraft/ \
   && /usr/bin/python /usr/share/minecraft/setup.py install
@@ -44,8 +43,13 @@ RUN cd /usr/share/minecraft/ \
 #RUN apt-get remove -y \
 #  build-essential openssh-server vim
 
-# Run as this user
-#USER mcservers
+ONBUILD RUN mkdir -p /usr/share/minecraft/servers \
+  && chown root:root /usr/share/minecraft/servers \
+  && chmod 755 /usr/share/minecraft/servers \
+  && wget \
+    -O /usr/share/minecraft/servers/minecraft_server.jar \
+    https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar \
+  && echo "Updated server"
 
 EXPOSE 22 25565
 VOLUME ["/var/lib/minecraft","/root/.ssh/"]
