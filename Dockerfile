@@ -18,6 +18,8 @@ RUN apt-get install -y \
 RUN mkdir -p /var/log/supervisord && \
   chmod 700 /var/log/supervisord/
 
+RUN apt-get install --yes screen 
+
 # Various configs
 ADD ./ /usr/share/minecraft/    
 RUN  cp -a /usr/share/minecraft/supervisord.d/*.conf /etc/supervisor/conf.d/ \
