@@ -47,9 +47,11 @@ ONBUILD RUN mkdir -p /usr/share/minecraft/servers \
   && chown root:root /usr/share/minecraft/servers \
   && chmod 755 /usr/share/minecraft/servers \
   && wget \
-    -O /usr/share/minecraft/servers/minecraft_server.jar \
+    -O /usr/share/minecraft/servers/minecraft_server.1.7.4.jar \
     https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar \
   && echo "Updated server"
+ONBUILD RUN ln -s /usr/share/minecraft/servers/minecraft_server.1.7.4.jar \
+  /var/lib/minecraft/minecraft_server.jar
 
 EXPOSE 22 25565
 VOLUME ["/var/lib/minecraft","/root/.ssh/"]
