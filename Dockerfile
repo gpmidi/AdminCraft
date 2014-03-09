@@ -17,7 +17,7 @@ RUN apt-get install -y \
 
 RUN mkdir -p /var/log/supervisor \
   && chmod 700 /var/log/supervisor/ \
-  && chown -R 1000.1000 /var/log/supervisor
+  && chown -R root:root /var/log/supervisor
 
 RUN apt-get install --yes screen 
 
@@ -45,7 +45,7 @@ RUN cd /usr/share/minecraft/ \
 #  build-essential openssh-server vim
 
 # Run as this user
-USER mcservers
+#USER mcservers
 
 EXPOSE 22 25565
 VOLUME ["/var/lib/minecraft","/root/.ssh/"]
