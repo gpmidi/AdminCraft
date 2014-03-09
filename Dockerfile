@@ -16,7 +16,8 @@ RUN apt-get install -y \
   supervisor logrotate cron man openssh-server vim
 
 RUN mkdir -p /var/log/supervisor && \
-  chmod 700 /var/log/supervisor/
+  chmod 700 /var/log/supervisor/ \
+  chown -R 1000.1000 /var/log/supervisor
 
 RUN apt-get install --yes screen 
 
