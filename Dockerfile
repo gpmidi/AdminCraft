@@ -35,7 +35,7 @@ RUN  cp -a /usr/share/minecraft/supervisord.d/ /etc/supervisor/conf.d \
   && wget -O /var/lib/minecraft/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
 
 RUN cd /usr/share/minecraft/ \
-  && /usr/bin/python /usr/share/minecraft/setup.py install \
+  && /usr/bin/python /usr/share/minecraft/setup.py install
 
 #RUN apt-get remove -y \
 #  build-essential openssh-server vim
