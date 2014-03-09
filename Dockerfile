@@ -31,13 +31,14 @@ RUN  cp /usr/share/minecraft/supervisord.d/*.conf /etc/supervisor/conf.d/ \
   && cp /usr/share/minecraft/authorized_keys /root/.ssh/authorized_keys \
   && chmod -R 755 /var/lib/minecraft/ \
   && cp -a /var/lib/minecraft/ \
-  && cd /usr/share/minecraft/ \
-  && /usr/bin/python /usr/share/minecraft/setup.py install \
   && chmod 400 /root/.ssh/authorized_keys \
   && chown root:root /root/.ssh/authorized_keys \
   && chown -R 1000.1000 /var/lib/minecraft \
   && chmod -R 755 /var/lib/minecraft \
   && wget -O /var/lib/minecraft/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
+
+RUN cd /usr/share/minecraft/ \
+  && /usr/bin/python /usr/share/minecraft/setup.py install \
 
 #RUN apt-get remove -y \
 #  build-essential openssh-server vim
