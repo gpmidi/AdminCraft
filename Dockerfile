@@ -42,6 +42,9 @@ RUN cd /usr/share/minecraft/ \
 #RUN apt-get remove -y \
 #  build-essential openssh-server vim
 
+# Run as this user
+USER mctest
+
 EXPOSE 22 25565
 VOLUME ["/var/lib/minecraft","/root/.ssh/"]
 CMD ["supervisord", "--nodaemon", "--logfile=/var/log/supervisord/supervisord.log", "--loglevel=warn", "--logfile_maxbytes=1GB", "--logfile_backups=0"]
