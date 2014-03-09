@@ -36,7 +36,8 @@ RUN  cp -a /usr/share/minecraft/supervisord.d/*.conf /etc/supervisor/conf.d/ \
   && chown root:root /root/.ssh/authorized_keys /usr/share/minecraft /etc/init.d/minecraft \
   && chown -R 1000.1000 /var/lib/minecraft /var/lib/minecraftBackups \
   && chmod -R 755 /var/lib/minecraft /usr/share/minecraft /var/lib/minecraftBackups \
-
+  && echo "Done with many cmds"
+  
 RUN cd /usr/share/minecraft/ \
   && /usr/bin/python /usr/share/minecraft/setup.py install
 
