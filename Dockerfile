@@ -20,15 +20,14 @@ RUN mkdir -p /var/log/supervisord && \
 
 # Various configs
 ADD ./ /usr/share/minecraft/    
-RUN  cp /usr/share/minecraft/supervisord.d/*.conf /etc/supervisor/conf.d/ \
-  && cp /usr/share/minecraft/logrotate.d/*.conf /etc/logrotate.d/ \
+RUN  cp /usr/share/minecraft/supervisord.d/ /etc/supervisor/conf.d \
+  && cp /usr/share/minecraft/logrotate.d/ /etc/logrotate.d \
   && mkdir -p /var/run/sshd \
   && chmod 755 /var/run/sshd \
   && mkdir /root/.ssh \
   && chmod 700 /root/.ssh \
   && cp /usr/share/minecraft/authorized_keys /root/.ssh/authorized_keys \
   && chmod -R 755 /var/lib/minecraft/ \
-  && cp -a /var/lib/minecraft/ \
   && chmod 400 /root/.ssh/authorized_keys \
   && chown root:root /root/.ssh/authorized_keys \
   && chown -R 1000.1000 /var/lib/minecraft \
