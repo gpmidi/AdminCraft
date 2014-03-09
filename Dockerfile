@@ -22,17 +22,18 @@ RUN mkdir -p /var/log/supervisord && \
 ADD ./ /usr/share/minecraft/    
 RUN  cp -a /usr/share/minecraft/supervisord.d/*.conf /etc/supervisor/conf.d/ \
   && cp -a /usr/share/minecraft/logrotate.d/*.conf /etc/logrotate.d/ \
+  && cp -a /usr/share/minecraft/scripts/minecraftDocker /etc/init.d/minecraft \
   && mkdir -p /var/run/sshd \
-  && chmod 755 /var/run/sshd \
+  && chmod 755 /var/run/sshd /etc/init.d/minecraft \
   && mkdir /root/.ssh \
   && chmod 700 /root/.ssh \
   && cp -a /usr/share/minecraft/authorized_keys /root/.ssh/authorized_keys \
   && chmod -R 755 /var/lib/minecraft/ \
   && chmod 400 /root/.ssh/authorized_keys \
-  && chown root:root /root/.ssh/authorized_keys \
+  && chown root:root /root/.ssh/authorized_keys /usr/share/minecraft /etc/init.d/minecraft \
   && chown -R 1000.1000 /var/lib/minecraft \
-  && chmod -R 755 /var/lib/minecraft \
-  && wget -O /var/lib/minecraft/minecraft.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
+  && chmod -R 755 /var/lib/minecraft /usr/share/minecraft \
+  && wget -O /var/lib/minecraft/minecraft_server.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.7.4/minecraft_server.1.7.4.jar
 
 RUN cd /usr/share/minecraft/ \
   && /usr/bin/python /usr/share/minecraft/setup.py install
